@@ -6,4 +6,4 @@ coverage
 package-lock.json
 yarn.lock
 pnpm-lock.yaml
-components/ui
+client/components/ui
