@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
+  "bin": {
+    "orbit": "src/cli/main.js"
+  },
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "cli": "node src/cli/main.js"
   },
   "keywords": [],
   "author": "",

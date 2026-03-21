@@ -21,7 +21,6 @@ app.use(
 app.all('/api/auth/*splat', toNodeHandler(auth)) // For ExpressJS v5
 const PORT = process.env.PORT || 3005
 
-app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
