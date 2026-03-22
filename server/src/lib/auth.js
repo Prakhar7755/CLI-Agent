@@ -9,7 +9,7 @@ export const auth = betterAuth({
   }),
   basePath: '/api/auth',
   trustedOrigins: ['http://localhost:3000'],
-  baseURL:"http://localhost:3005",
+  baseURL: 'http://localhost:3005',
   socialProviders: {
     github: {
       clientId: process.env.GITHUB_CLIENT_ID,

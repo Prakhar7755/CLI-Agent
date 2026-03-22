@@ -6,7 +6,7 @@ import { z } from 'zod'
 
 // zod schema for structured application generation
 
-const ApplicationSchema = z.object({
+export const ApplicationSchema = z.object({
   folderName: z.string().describe('Kebab-case folder name for the application'),
   description: z.string().describe('Brief description of what was created'),
   files: z
@@ -28,7 +28,7 @@ const printSystem = (message) => {
 }
 
 //   Display file tree structure
-const displayFileTree = (files, folderName) => {
+export const displayFileTree = (files, folderName) => {
   printSystem(chalk.cyan('\n📂 Project Structure:'))
   printSystem(chalk.white(`${folderName}/`))
 
@@ -60,7 +60,7 @@ const displayFileTree = (files, folderName) => {
 }
 
 // Create application files
-async function createApplicationFiles(baseDir, folderName, files) {
+export async function createApplicationFiles(baseDir, folderName, files) {
   const appDir = path.join(baseDir, folderName)
 
   await fs.mkdir(appDir, { recursive: true })

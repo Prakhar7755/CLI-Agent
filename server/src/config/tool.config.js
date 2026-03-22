@@ -36,7 +36,7 @@ const getEnabledTools = () => {
   try {
     for (const toolConfig of availableTools) {
       if (toolConfig.enabled) {
-        tools[toolConfig.id] = toolConfig.getTools()
+        tools[toolConfig.id] = toolConfig.getTool()
       }
     }
 

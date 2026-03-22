@@ -26,7 +26,10 @@ const getStoredToken = async () => {
     const token = JSON.parse(data)
     return token
   } catch (err) {
-    console.error("File doesn't exists or can't read it", err.message)
+    // Only log error if it's not just a missing file
+    if (err.code !== 'ENOENT') {
+      console.error('Error reading token file:', err.message)
+    }
     return null
   }
 }
@@ -312,6 +315,7 @@ const pollForToken = async (authClient, deviceCode, clientId, initialInterval) =
 // ============================================
 // LOGOUT COMMAND
 // ============================================
+
 const logoutAction = async () => {
   const spinner = yoctoSpinner({ text: 'Logging out...' }).start()
   const success = await clearStoredToken()

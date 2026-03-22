@@ -27,8 +27,6 @@ yarn-error.log*
 pnpm-debug.log*
 
 # env files
-.env*
-.env*.local
 
 # vercel
 .vercel/
@@ -51,3 +49,10 @@ next-env.d.ts
 
 # editor
 .vscode-test
+node_modules
+# Keep environment variables out of version control
+.env
+
+/src/generated/prisma
+
+explain.md
