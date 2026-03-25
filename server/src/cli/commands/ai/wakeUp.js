@@ -21,7 +21,7 @@ const wakeUpAction = async () => {
 
   const user = await prisma.user.findFirst({
     where: {
-      session: {
+      sessions: {
         some: { token: token.access_token },
       },
     },

@@ -1,4 +1,4 @@
-import { google } from '@ai-sdk/google'
+import { createGoogleGenerativeAI } from '@ai-sdk/google'
 import { streamText, generateText } from 'ai'
 import { config } from '../../config/google.config.js'
 import chalk from 'chalk'
@@ -8,12 +8,13 @@ dotenv.config()
 export class AIService {
   constructor() {
     if (!config.googleApiKey) {
-      throw new Error('GOOGLE_API_KEY is not set in environment variables')
+      throw new Error('GOOGLE_GENERATIVE_AI_API_KEY is missing. Please set it in your .env file.')
     }
 
-    this.model = google(config.model, {
+    const google = createGoogleGenerativeAI({
       apiKey: config.googleApiKey,
     })
+    this.model = google(config.model)
   }
 
   //  Send a message and get streaming response

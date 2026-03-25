@@ -195,31 +195,23 @@ async function getAIResponse(conversationId) {
 
   const tools = getEnabledTools()
 
-  let fullResponse = ''
-  let isFirstChunk = true
   const toolCallsDetected = []
 
   try {
-    // IMPORTANT: Pass tools in the streamText config
     const result = await aiService.sendMessage(
       aiMessages,
-      (chunk) => {
-        if (isFirstChunk) {
-          spinner.stop()
-          console.log('\n')
-          const header = chalk.green.bold('🤖 Assistant:')
-          console.log(header)
-          console.log(chalk.gray('─'.repeat(60)))
-          isFirstChunk = false
-        }
-        fullResponse += chunk
-        process.stdout.write(chunk)
-      },
+      null, // Don't stream chunks to prevent duplication
       tools,
       (toolCall) => {
         toolCallsDetected.push(toolCall)
       }
     )
+
+    spinner.stop()
+    console.log('\n')
+    const header = chalk.green.bold('🤖 Assistant:')
+    console.log(header)
+    console.log(chalk.gray('─'.repeat(60)))
 
     // Display tool calls if any
     if (toolCallsDetected.length > 0) {
@@ -262,9 +254,7 @@ async function getAIResponse(conversationId) {
       console.log(toolResultBox)
     }
 
-    // Render markdown response
-    console.log('\n')
-    const renderedMarkdown = marked.parse(fullResponse)
+    const renderedMarkdown = marked.parse(result.content)
     console.log(renderedMarkdown)
     console.log(chalk.gray('─'.repeat(60)))
     console.log('\n')

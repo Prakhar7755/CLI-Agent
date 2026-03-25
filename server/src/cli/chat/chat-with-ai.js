@@ -128,31 +128,20 @@ const getAIResponse = async (conversationId) => {
   const dbMessages = await chatService.getMessages(conversationId)
   const aiMessages = chatService.formatMessagesForAI(dbMessages)
 
-  let fullResponse = ''
-  let isFirstChunk = true
-
   try {
-    const result = await aiService.sendMessage(aiMessages, (chunk) => {
-      // Stop spinner on first chunk and show header
-      if (isFirstChunk) {
-        spinner.stop()
-        console.log('\n')
-        const header = chalk.green.bold('🤖 Assistant:')
-        console.log(header)
-        console.log(chalk.gray('─'.repeat(60)))
-        isFirstChunk = false
-      }
-      fullResponse += chunk
-      process.stdout.write(chunk)
-    })
+    // Get the full response without streaming chunks to stdout to prevent duplication
+    const result = await aiService.sendMessage(aiMessages)
 
-    // Now render the complete markdown response
+    spinner.stop()
     console.log('\n')
-    const renderedMarkdown = marked.parse(fullResponse)
+    const header = chalk.green.bold('🤖 Assistant:')
+    console.log(header)
+    console.log(chalk.gray('─'.repeat(60)))
+
+    const renderedMarkdown = marked.parse(result.content)
     console.log(renderedMarkdown)
     console.log(chalk.gray('─'.repeat(60)))
     console.log('\n')
-
     return result.content
   } catch (err) {
     spinner.error('Failed to get AI response :: ' + err.message)
