@@ -12,7 +12,7 @@ export const LoginForm = () => {
     setIsLoading(true)
     await authClient.signIn.social({
       provider: 'github',
-      callbackURL: 'http://localhost:3000',
+      callbackURL: process.env.CLIENT_URL,
     })
     setIsLoading(false)
   }

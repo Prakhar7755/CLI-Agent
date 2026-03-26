@@ -8,8 +8,8 @@ export const auth = betterAuth({
     provider: 'postgresql', // or "mysql", "postgresql", ...etc
   }),
   basePath: '/api/auth',
-  trustedOrigins: ['http://localhost:3000'],
-  baseURL: 'http://localhost:3005',
+  trustedOrigins: [process.env.CLIENT_URL || 'http://localhost:3000'],
+  baseURL: process.env.SERVER_URL || 'http://localhost:3005',
   socialProviders: {
     github: {
       clientId: process.env.GITHUB_CLIENT_ID,

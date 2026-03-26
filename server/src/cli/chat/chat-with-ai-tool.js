@@ -70,7 +70,6 @@ async function selectTools() {
   const toolOptions = availableTools.map((tool) => ({
     value: tool.id,
     label: tool.name,
-    hint: tool.description,
   }))
 
   const selectedTools = await multiselect({

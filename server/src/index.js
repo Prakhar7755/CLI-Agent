@@ -11,7 +11,7 @@ const app = express()
 // Configure CORS middleware
 app.use(
   cors({
-    origin: 'http://localhost:3000', // Replace with your frontend's origin
+    origin: process.env.CLIENT_URL, // Replace with your frontend's origin
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed HTTP methods
     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
   })
@@ -71,9 +71,9 @@ app.get('/api/me/:access_token', async (req, res) => {
 
 app.get('/device', async (req, res) => {
   const { user_code } = req.query // Fixed: should be req.query, not req.params
-  res.redirect(`http://localhost:3000/device?user_code=${user_code}`)
+  res.redirect(`${process.env.CLIENT_URL}/device?user_code=${user_code}`)
 })
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port http://localhost:${PORT}`)
+  console.log(`Server is running on port ${PORT}`)
 })
