@@ -12,7 +12,7 @@ export const LoginForm = () => {
     setIsLoading(true)
     await authClient.signIn.social({
       provider: 'github',
-      callbackURL: process.env.CLIENT_URL,
+      callbackURL: process.env.NEXT_PUBLIC_CLIENT_URL,
     })
     setIsLoading(false)
   }
@@ -26,13 +26,12 @@ export const LoginForm = () => {
             loading="eager"
             src={'/login.svg'}
             alt="Login"
-            height={180}
             width={180}
             className="relative z-10 transform transition hover:scale-[1.03] duration-500 drop-shadow-2xl"
           />
         </div>
         <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-transparent bg-clip-text bg-linear-to-br from-zinc-800 via-indigo-600 to-zinc-400 dark:from-indigo-400 dark:via-purple-400 dark:to-zinc-400 drop-shadow-sm select-none">
-          Welcome to Orbital
+          Welcome to AI ALI Agent Web App
         </h1>
         <p className="text-base md:text-lg font-medium text-zinc-500 dark:text-zinc-400/80 max-w-lg leading-relaxed">
           Authenticate your account to securely sync your device flow and unify your workspace
@@ -77,7 +76,8 @@ export const LoginForm = () => {
           </CardContent>
           <div className="px-8 pb-8 pt-0 text-center relative z-10">
             <p className="text-xs font-medium text-zinc-500 dark:text-zinc-500 max-w-70 mx-auto leading-relaxed">
-              By continuing, you agree to Orbital&apos;s terms of service and strict privacy bounds.
+              By continuing, you agree to AI CLI Agent&apos;s terms of service and strict privacy
+              bounds.
             </p>
           </div>
         </Card>

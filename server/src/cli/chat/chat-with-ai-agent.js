@@ -166,7 +166,7 @@ export const startAgentChat = async (conversationId = null) => {
   try {
     intro(
       boxen(
-        chalk.bold.magenta('🤖 Orbit AI - Agent Mode\n\n') +
+        chalk.bold.magenta('🤖 AI CLI - Agent Mode\n\n') +
           chalk.gray('Autonomous Application Generator'),
         {
           padding: 1,

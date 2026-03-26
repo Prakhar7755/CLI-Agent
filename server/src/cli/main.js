@@ -15,7 +15,7 @@ async function main() {
   // Display banner
   console.log(
     chalk.cyan(
-      figlet.textSync('Orbit CLI', {
+      figlet.textSync('AI CLI AGENT', {
         font: 'Standard',
         horizontalLayout: 'default',
       })
@@ -25,7 +25,7 @@ async function main() {
 
   const program = new Command('orbit')
 
-  program.version('0.0.1').description('Orbit CLI - Device Flow Authentication')
+  program.version('0.0.1').description('AI CLI Agent - Device Flow Authentication')
 
   // Add commands
   program.addCommand(wakeUp)
@@ -42,6 +42,6 @@ async function main() {
 }
 
 main().catch((error) => {
-  console.error(chalk.red('Error running Orbit CLI:'), error)
+  console.error(chalk.red('Error running AI CLI Agent :'), error)
   process.exit(1)
 })

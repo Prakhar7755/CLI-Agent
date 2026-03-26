@@ -225,7 +225,7 @@ export const startChat = async (mode = 'chat', conversationId = null) => {
   try {
     // Display intro banner
     intro(
-      boxen(chalk.bold.cyan('🚀 Orbit AI Chat'), {
+      boxen(chalk.bold.cyan('🚀 AI CLI Agent Chat'), {
         padding: 1,
         borderStyle: 'double',
         borderColor: 'cyan',
